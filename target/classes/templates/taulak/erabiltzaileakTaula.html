@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Erabiltzaile lista</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/taulak.css}">
+</head>
+
+<body>
+
+	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+	<h1>Erabiltzaile lista</h1>
+
+	<div th:if="${#lists.size(usuarios) > 0 && usuarios.?[rola == 'User'].size() > 0}">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Izena</th>
+					<th>Email-a</th>
+					<th>Telefonoa</th>
+					<th>Rola</th>
+					<th>Helbidea</th>
+					<th>Ekintzak</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Iterar sobre usuarios con rol 'User' -->
+				<tr th:each="usuario : ${usuarios}" th:if="${usuario.rola == 'User'}">
+					<td th:text="${usuario.izena}"></td>
+					<td th:text="${usuario.email}"></td>
+					<td th:text="${usuario.telefono_zbk}"></td>
+					<td th:text="${usuario.rola}"></td>
+					<td
+						th:text="|${usuario.helbidea.kalea}, ${usuario.helbidea.hiria}, ${usuario.helbidea.postaKodea}, ${usuario.helbidea.herrialdea}|">
+					</td>
+					<td>
+						<a th:href="@{/saskia/admin/ikusi/{email}(email=${usuario.email})}">Ikusi saskia</a>
+						<a th:href="@{/perfil/admin/ezabatu/{id}(id=${usuario.id})}"
+							onclick="return confirm('Erabiltzailearen kontua eta datuak ezabatuko dira.');">Ezabatu
+							erabiltzailea</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Mensaje si no hay usuarios -->
+	<div th:if="${#lists.size(usuarios) > 0 && usuarios.?[rola == 'User'].size() == 0}">
+		<p class="saskia-text">Ez dago erabiltzailerik erregistratuta.</p>
+	</div>
+
+</body>
+
+</html>

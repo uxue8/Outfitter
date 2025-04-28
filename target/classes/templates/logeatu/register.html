@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registratu.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Erregistratzeko formularioa</title>
+
+</head>
+
+<body>
+	<form class="login-form" th:action="@{/home/erregistratu}" th:object="${erabiltzaileBerria}" method="POST">
+		<h2>Erregistratzeko formularioa</h2>
+		<label for="izena">Izena</label>
+		<input type="text" id="izena" th:field="*{izena}" placeholder="Idatzi zure izena" required>
+
+		<label for="email">Posta elektronikoa</label>
+		<input type="email" id="email" th:field="*{email}" name="email" placeholder="Idatzi zure Posta elektronikoa"
+			required>
+
+		<label for="password">Pasahitza</label>
+		<input type="password" id="password" th:field="*{pasahitza}" name="password" placeholder="Idatzi zure pasahitza"
+			required>
+
+		<label for="street">Kalea</label>
+		<input type="text" id="street" th:field="*{helbidea.kalea}" name="street" placeholder="Idatzi zure kalea"
+			required>
+
+		<label for="postal-code">Posta kodea</label>
+		<input type="text" id="postal-code" th:field="*{helbidea.postaKodea}" name="postal_code"
+			placeholder="Idatzi zure posta kodea" required>
+
+		<label for="city">Hiria</label>
+		<input type="text" id="city" th:field="*{helbidea.hiria}" name="city" placeholder="Idatzi zure hiria" required>
+
+		<label for="country">Herrialdea</label>
+		<input type="text" id="country" th:field="*{helbidea.herrialdea}" name="country"
+			placeholder="Idatzi zure herrialdea" required>
+
+		<label for="phone">Telefono zbk.</label>
+		<input type="tel" id="phone" th:field="*{telefono_zbk}" name="phone" placeholder="Idatzi zure telefono zbk."
+			required>
+		<div th:if="${error}" class="alert alert-danger">
+			<p th:text="${error}"></p>
+		</div>
+		<button type="submit">Erregistratu</button>
+		<a href="/home">Saioa hasi</a>
+	</form>
+</body>
+
+</html>

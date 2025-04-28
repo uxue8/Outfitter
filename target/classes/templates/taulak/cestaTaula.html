@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saskia del Usuario</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cesta.css}">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+
+    <!-- Contenedor principal -->
+    <div class="cesta-container">
+        <h1 class="cesta-title" th:text="'Saskia ' + ${erabiltzailea.izena}"></h1>
+
+        <div th:if="${cesta.produktuak.size() != 0}" class="cesta-content">
+            <div class="cesta-info">
+                <h2>Helbidea</h2>
+                <p th:text="${cesta.helbidea}"></p>
+            </div>
+
+            <div class="cesta-products">
+                <h2>Produktuak</h2>
+                <ul>
+                    <li th:each="producto : ${cesta.produktuak}">
+                        <span th:text="${producto.deskribapena}"></span> - 
+                        <span th:text="${producto.prezioa}"></span>€
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cesta-actions">
+                <a class="botoia" th:href="@{/saskia/ezabatu/{id}(id=${cesta.id})}" th:if="${rola == 'ROLE_USER'}">
+                    Saskia Ezabatu
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${cesta.produktuak.size() == 0}" class="empty-cesta">
+            <p class="saskia-text">Saskia hutsik dago</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

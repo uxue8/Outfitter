@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+	
+	<title>Perfil del Usuario</title>
+</head>
+
+<body class="perfil-body">
+	<div class="form-container">
+		<h2>Perfilaren Aldaketa</h2>
+
+		<form th:action="@{/perfil/editar}" method="POST" th:object="${erabiltzailea}">
+			<input type="hidden" name="id" th:value="${erabiltzailea.id}" />
+
+			<div>
+				<label for="izena">Izena</label>
+				<input type="text" id="izena" name="izena" th:value="${erabiltzailea.izena}" required />
+			</div>
+
+			<div>
+				<label for="email">Korreoa elektronikoa</label>
+				<input type="email" id="email" name="email" th:value="${erabiltzailea.email}" required />
+			</div>
+			<div>
+			    <label for="telefonoa">Telefonoa (Beste bat jartzen bada, gehitu egingo da)</label>
+			    <input type="tel" id="telefonoa" name="telefonoa" th:value="${erabiltzailea.telefono_zbk[0]}" required />
+			</div>
+			
+			<div>
+				<label for="kalea">Kalea</label>
+				<input type="text" id="kalea" name="helbidea.kalea" th:value="${erabiltzailea.helbidea.kalea}"
+					 />
+			</div>
+			<div>
+				<label for="postaKodea">Posta kodea</label>
+				<input type="text" id="postaKodea" name="helbidea.postaKodea"
+					th:value="${erabiltzailea.helbidea.postaKodea}" required />
+			</div>
+			<div>
+				<label for="hiria">Hiria</label>
+				<input type="text" id="hiria" name="helbidea.hiria" th:value="${erabiltzailea.helbidea.hiria}"
+					required />
+			</div>
+			<div>
+				<label for="herrialdea">Herrialdea</label>
+				<input type="text" id="herrialdea" name="helbidea.herrialdea"
+					th:value="${erabiltzailea.helbidea.herrialdea}" required />
+			</div>
+
+
+			<button type="submit">Aldaketak Gorde</button>
+			<a href="/perfil/ver" class="btn btn-warning">Itzuli</a>
+		</form>
+	</div>
+
+</body>
+
+</html>

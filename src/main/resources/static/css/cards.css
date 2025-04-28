@@ -1,0 +1,115 @@
+/* cards.css */
+
+/* Contenedor principal de las cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+	margin-left: 270px;
+	  
+}
+
+/* Estilo de cada card */
+.card {
+    background-color: #BBCBCB;
+    border-radius: 8px;
+	border-color: #218682;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Imagen de la card */
+.card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Cuerpo de la card */
+.card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-body p{
+	color:  #191716;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-description {
+    font-size: 1em;
+    color: #191716;
+    margin-bottom: 10px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.card-price {
+    font-size: 1.2em;
+    color: #2e8b57;
+    margin-bottom: 10px;
+}
+
+.card-stock {
+    font-size: 1em;
+    color: #d9534f;
+    margin-bottom: 15px;
+}
+
+.card-tamaina select {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+/* Acciones en la card (editar, eliminar, etc.) */
+.card-actions a {
+    background-color: #454E9E;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.card-actions a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el mensaje cuando no hay productos */
+.saskia-text {
+    font-size: 1.2em;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para el botón "Produktua gehitu" */
+.botoia {
+    background-color: #454E9E;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.botoia:hover {
+    background-color: #0056b3;
+}

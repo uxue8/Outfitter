@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+	<title>Agregar Producto</title>
+</head>
+
+<body>
+	<h2>Produktua gehitu</h2>
+
+	<div class="form-container">
+		<form th:action="@{/produktua/erropa/gehitu}" th:object="${produktua}" method="post"
+			enctype="multipart/form-data">
+			<label for="tipo">Tipo:</label>
+			<select name="tipo" id="tipo" th:field="*{tipo}">
+				<option value="">Selecciona un tipo</option>
+				<option value="pantalon">Pantalon</option>
+				<option value="camiseta">Camiseta</option>
+				<option value="camisa">Camisa</option>
+				<option value="sudadera">Sudadera</option>
+				<option value="abrigo">Abrigo</option>
+				<option value="chaqueta">Chaqueta</option>
+				<option value="zapatilla">Zapatillas</option>
+			</select>
+			<br><br>
+
+			<label for="deskribapena">Deskribapena:</label>
+			<input type="text" id="deskribapena" th:field="*{deskribapena}" />
+			<br><br>
+			<label for="irudia">Argazkia aukeratu:</label>
+			<input type="file" id="irudia" name="file" accept="image/*" />
+			<br><br>
+			<div th:if="${error}" class="alert alert-danger">
+				<h2 class="text-error" th:text="${error} + ' produktua existitzen da'">
+					</h2class>
+			</div>
+			<button class="btn-gehitu" type="submit">Gehitu produktua</button>
+			<a class="btn" th:href="@{/produktua/produktuak}">Itzuli</a>
+		</form>
+	</div>
+
+</body>
+
+</html>

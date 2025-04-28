@@ -1,0 +1,87 @@
+body{
+	background-color: #BBCBCB;
+}
+.cesta-container {
+    max-width: 800px;
+    margin: 80px auto 20px auto; /* Deja espacio para el navbar */
+    padding: 20px;
+    background-color: #218683;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.cesta-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #191716;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.cesta-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cesta-info, .cesta-products {
+    background: #BBCBCB;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.cesta-info h2, .cesta-products h2 {
+    margin-bottom: 10px;
+    color: #454E9E;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.cesta-products ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cesta-products li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.cesta-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.botoia {
+    background-color: #454E9E;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: background-color 0.3s;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.botoia:hover {
+    background-color: #0056b3;
+}
+
+.empty-cesta {
+    text-align: center;
+    padding: 30px;
+    background-color: #fff3f3;
+    border: 1px solid #D00000;
+    border-radius: 10px;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}
+
+.saskia-text {
+    color: #D00000;
+    font-size: 1.4rem;
+    font-family: Arial, sans-serif; /* CAMBIO a Arial */
+}

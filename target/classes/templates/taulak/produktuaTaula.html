@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Produktuak</title>
+	<!-- Estilos específicos para las cards -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/taulak.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/cards.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/filters.css}">
+</head>
+
+<body>
+	<!-- Incluir el navbar, que ya tiene su propio archivo de estilos -->
+	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+
+	<h1>Produktuak</h1>
+		
+
+	<!-- Condición para mostrar tabla si es admin o cards si es user -->
+	<div th:if="${rola == 'ROLE_ADMIN'}">
+		<!-- Tabla para ADMIN -->
+		<table>
+			<thead>
+				<tr>
+					<th>Produktua</th>
+					<th>Deskripzioa</th>
+					<th>Prezioa</th>
+					<th>Argazkia</th> 
+					<th>Stock</th>
+					<th>Tamaina</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="produktua : ${produktuak}">
+					<td th:text="${produktua.tipo}"></td>
+					<td th:text="${produktua.deskribapena}"></td>
+					<td th:text="${produktua.prezioa}"></td>
+					<td>
+						<img th:src="@{'/uploads/' + ${produktua.irudiaUrl}}" alt="Imagen del producto" width="100">
+					</td>
+					<td th:text="${produktua.stock}"></td>
+					<td>
+						<select>
+							<option th:each="tamaina : ${produktua.tamainaList}" th:value="${tamaina.trim()}"
+								th:text="${tamaina.trim()}"></option>
+						</select>
+					</td>
+					<td>
+						<a th:href="@{/produktua/admin/editatu/{id}(id=${produktua.id})}">Editatu</a>
+						<a th:href="@{/produktua/admin/ezabatu/{id}(id=${produktua.id})}">Ezabatu</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Cards para USUARIOS -->
+	<div th:if="${rola != 'ROLE_ADMIN'}" class="cards-container">
+		<!-- Panel de filtros visible solo para los usuarios -->
+				<div class="filters-container" th:if="${rola == 'ROLE_USER'}">
+					<h3>Filtros</h3>
+					<div class="filter-section">
+						<h4>Tipo</h4>
+						<select name="tipo" id="tipo">
+							<option value="">Selecciona un tipo</option>
+							<option value="pantalon">Pantalones</option>
+							<option value="camiseta">Camisetas</option>
+							<option value="camisa">Camisas</option>
+							<option value="sudadera">Sudaderas</option>
+							<option value="abrigo">Abrigos</option>
+							<option value="chaqueta">Chaquetas</option>
+							<option value="zapatilla">Zapatillas</option>
+						</select>
+					</div>
+						<button class="filter-button" onclick="applyFilters()">Filtroak aplikatu</button>
+						<br>
+						<button class="filter-button" onclick="borrarFiltros()">Filtroak ezabatu</button>
+					</div>
+					
+		<div th:each="produktua : ${produktuak}" th:if="${produktuak != null}" class="card">
+			<img th:src="@{'/uploads/' + ${produktua.irudiaUrl}}" alt="Imagen del producto" class="card-image">
+			<div class="card-body">
+				<h2 class="card-description" th:text="${produktua.deskribapena}"></h2>
+						<div class="card-actions">
+					<!--<a th:href="@{/produktua/produktuak/erosi/{id}(id=${produktua.id})}">Saskira sartu</a>!-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mensaje si no hay productos -->
+	<div th:if="${produktuak == null}">
+		<p class="saskia-text">Ez dago produkturik</p>
+	</div>
+
+	<!-- Botón para agregar producto, visible solo para administradores -->
+	<a class="botoia" th:href="@{/produktua/gehitu}" th:if="${rola == 'ROLE_USER'}">Erropa gehitu</a>
+
+</body>
+
+
+<script>
+    // Obtener los elementos del range y del span para mostrar el precio
+    const precioRange = document.getElementById("precio");
+    const precioValue = document.getElementById("precioValue");
+
+    // Función para actualizar el valor de la barra y el precio en tiempo real
+    precioRange.addEventListener("input", function() {
+        precioValue.textContent = precioRange.value; // Actualiza el texto del valor mostrado
+    });
+	
+	function applyFilters() {
+		debugger;
+	
+		   const tipo = document.getElementById("tipo").value;
+		   var basePath = window.location.pathname.split("?")[0];
+
+		      // Construir la URL correctamente
+		        const url = `${basePath}?tipo=${tipo}`;
+		      // Redirigir
+		      window.location.href = url;
+	   }
+	   
+	function borrarFiltros(){
+		var basePath = window.location.pathname.split("?")[0];
+		const url= `${basePath}`;
+			      window.location.href = url;
+	}
+</script>
+</html>

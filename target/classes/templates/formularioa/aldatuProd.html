@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+	<title>Produktua Aldatu</title>
+</head>
+
+<body>
+	<h2>Produktua Aldatu</h2>
+
+	<div class="form-container">
+		<form th:action="@{/produktua/admin/editatu/{id}(id=${produktua.id})}" th:object="${produktua}" method="post"
+			enctype="multipart/form-data">
+			<!-- Izena -->
+			<select name="tipo" id="tipo" th:field="*{tipo}">
+				<option value="">Selecciona un tipo</option>
+								<option value="pantalon">Pantalon</option>
+								<option value="camiseta">Camiseta</option>
+								<option value="camisa">Camisa</option>
+								<option value="sudadera">Sudadera</option>
+								<option value="abrigo">Abrigo</option>
+								<option value="chaqueta">Chaqueta</option>
+								<option value="zapatilla">Zapatillas</option>
+			</select>
+			<!-- Deskribapena -->
+			<label for="deskribapena">Deskribapena:</label>
+			<input type="text" id="deskribapena" th:field="*{deskribapena}" />
+			<br><br>
+			<label for="file">Argazkia aukeratu:</label>
+			<input type="file" id="file" name="file" required>
+			<br><br>
+			<button type="submit">Produktua aldatu</button>
+			<a class="btn" th:href="@{/produktua/produktuak}">Itzuli</a>
+		</form>
+	</div>
+
+</body>
+
+</html>

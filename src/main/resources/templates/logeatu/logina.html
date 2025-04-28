@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registratu.css}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Saioa hasi</title>
+</head>
+
+<body>
+	<div class="login-form">
+		<h2>Saioa hasi</h2>
+		<form th:action="@{/home}" method="post">
+			<label for="username">Korreo elektronikoa:</label>
+			<input type="text" id="username" name="username" required> <!-- Campo para el email -->
+
+			<label for="password">Pasahitza:</label>
+			<input type="password" id="password" name="password" required> <!-- Campo para la contraseña -->
+			<div th:if="${param.error}">
+				<p style="color: red;">Datu okerrak.</p>
+			</div>
+
+			<button type="submit">Saioa hasi</button>
+			<a href="/home/erregistratu">Erregistratu</a>
+		</form>
+	</div>
+</body>
+
+</html>

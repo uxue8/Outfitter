@@ -1,0 +1,30 @@
+<!-- navbar.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Navbar</title>
+</head>
+
+<body>
+	<div th:fragment="navbar">
+		<nav>
+			<ul>
+				<li><a href="/home/futbolWear">Hasiera</a></li>
+				<li><a href="/perfil/ver">Perfila</a></li>
+				<li><a href="/produktua/admin/produktuak" th:if="${rola == 'ROLE_ADMIN'}">Produktuak ikusi</a></li>
+				<li><a href="/erabiltzaileak/ikusi" th:if="${rola == 'ROLE_ADMIN'}">Erabiltzaileak ikusi</a></li>
+				<li><a href="/produktua/admin/taldea/gehitu" th:if="${rola == 'ROLE_ADMIN'}">Taldea gehitu</a></li>
+				<li><a href="/produktua/produktuak" th:if="${rola == 'ROLE_USER'}"> mi Armario</a></li>
+				<li>
+					<a href="#" onclick="document.getElementById('logout-form').submit();">Saioa itxi</a>
+					<form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>
+				</li>
+
+			</ul>
+		</nav>
+	</div>
+</body>
+
+</html>

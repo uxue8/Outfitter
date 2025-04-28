@@ -1,0 +1,141 @@
+/* Contenedor de filtros que ocupa toda la izquierda */
+.filters-container {
+	width: 250px;
+	height: calc(100vh - 80px); /* Ajusta al tamaño de pantalla menos el navbar */
+	margin-top: 80px; /* Altura de tu navbar (ajusta si tu navbar mide más o menos) */
+	padding: 20px;
+	background-color: rgba(33, 134, 130, 0.8); /* Fondo blanco con transparencia */
+	border-right: 2px solid #454E9E;
+	border-radius: 0 10px 10px 0;
+	box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	overflow-y: auto; /* Para que puedas hacer scroll dentro si hay muchos filtros */
+}
+
+/* Espaciado en la página principal para no tapar el contenido */
+.page-content {
+  margin-left: 270px; /* Deja hueco a la derecha del filtro */
+  padding: 20px;
+}
+
+/* Títulos de las secciones de filtros */
+.filters-container h3 {
+  font-size: 1.5rem;
+  color: #191716;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Secciones de cada filtro */
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section h4 {
+  font-size: 1.1rem;
+  color: #191716;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.filter-section p{
+	color: #191716;
+}
+
+/* Estilo de los filtros select */
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* Estilo de los sliders de precio */
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]:focus {
+  background: #aaa;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #454E9E;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #454E9E;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Estilo del valor de precio */
+#precioValue {
+  font-weight: bold;
+  color: #191716;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+/* Botón para aplicar los filtros */
+.filter-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #454E9E;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+.filter-button:active {
+  background-color: #454E9E;
+}
+
+/* Filtros de categorías, colores, etc. */
+.filter-category, .filter-size {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-category label, .filter-size label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.filter-category input, .filter-size input {
+  margin-bottom: 10px;
+}
+
+.filter-category input[type="checkbox"], .filter-size input[type="checkbox"] {
+  margin-right: 10px;
+}

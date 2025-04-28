@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/perfil.css}">
+	<title>Erabiltzailearen perfila</title>
+</head>
+
+<body class="perfil-body">
+	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="card">
+					<div class="card-header bg-primary text-white text-center">
+						<h3 th:if="${erabiltzailea.rola == 'Admin'}">Administrariaren perfila</h3>
+						<h3 th:if="${erabiltzailea.rola == 'User'}">Erabiltzailearen perfila</h3>
+
+					</div>
+					<div class="card-body">
+						<div class="mb-3">
+							<label for="izena" class="form-label">Izena:</label>
+							<p id="izena" th:text="${erabiltzailea.izena}"></p>
+						</div>
+						<div class="mb-3">
+							<label for="email" class="form-label">Email-a:</label>
+							<p id="email" th:text="${erabiltzailea.email}"></p>
+						</div>
+						<div class="mb-3">
+							<label for="telefonoa" class="form-label">Telefonoa:</label>
+							<p id="telefonoa" th:text="${erabiltzailea.telefono_zbk}"></p>
+						</div>
+						<div class="mb-3">
+							<label for="helbidea" class="form-label">Helbidea:</label>
+							<p id="helbidea">
+								<span th:text="${erabiltzailea.helbidea.kalea}"></span>,
+								<span th:text="${erabiltzailea.helbidea.postaKodea}"></span>,
+								<span th:text="${erabiltzailea.helbidea.hiria}"></span>,
+								<span th:text="${erabiltzailea.helbidea.herrialdea}"></span>
+							</p>
+						</div>
+
+						<div class="text-center mt-4">
+							<a href="/perfil/editar" class="btn btn-warning">Editar Perfil</a>
+							<a th:if="${erabiltzailea.rola == 'User'}" href="/perfil/ezabatu" class="btn btn-warning"
+								onclick="return confirm('Zure kontua eta datuak ezabatu nahi dituzu? Saskia ere galduko da.');">Kontua
+								ezabatu</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

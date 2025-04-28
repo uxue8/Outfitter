@@ -1,0 +1,91 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #BBCBCB;
+	/* Gris oscuro */
+	color: white;
+	margin: 0;
+}
+
+h1 {
+	color: #191716;
+	text-align: center;
+	font-size: 36px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th,
+td {
+	padding: 12px 15px;
+	text-align: left;
+	border: 1px solid #191716;
+}
+
+th {
+	background-color: #191716;
+	color: white;
+}
+
+td {
+	background-color: #218682;
+}
+
+tr:hover {
+	background-color: #218682;
+}
+
+table a,
+.botoia {
+	display: inline-block;
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px 20px;
+	color: #fff;
+	background-color: #454E9E;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+.botoia{
+	margin-left: 300px;
+}
+
+table a:nth-child(2) {
+	display: inline-block;
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px 20px;
+	color: #fff;
+	background-color: #D00000;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+table a:nth-child(2):hover {
+	background-color: #C43E3A;
+}
+
+table a:hover,
+.botoia:hover {
+	  background-color: #0056b3;
+}
+
+table img {
+	max-width: 100px;
+	border-radius: 5px;
+}
+
+
+select {
+	background-color: #f0f0f0;
+	color: #333;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 14px;
+	width: 100%;
+}
