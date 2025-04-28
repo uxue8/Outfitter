@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-	<title>Trendify</title>
+	<title>Outfitter</title>
 </head>
 
 <body>
@@ -16,10 +16,9 @@
 	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
 
 	<header class="store-header" th:if="${rola == 'ROLE_USER'}">
-		<h1>Trendify</h1>
-		<p class="slogan">Egunero berritu, Trendify-rekin.</p>
-		<a href="/produktua/produktuak/emakumea" class="cta-button">Emakume kolekzioa</a>
-		<a href="/produktua/produktuak/gizona" class="cta-button">Gizona kolekzioa</a>
+		<h1>Outfitter</h1>
+		<p class="slogan">Egunero berritu, Outfitter-rekin.</p>
+		<a href="/produktua/produktuak" class="cta-button" th:if="${rola == 'ROLE_USER'}"> Nire armairua</a>
 	</header>
 
 	<header class="store-header" th:if="${rola == 'ROLE_ADMIN'}">
@@ -27,11 +26,11 @@
 	</header>
 
 	<section class="camisetas-image">
-		<img src="/uploads/indexFutbolWear.webp" alt="Camisetas de fútbol" />
+		<img src="/uploads/FondoPagWeb.png" alt="Camisetas de fútbol" />
 	</section>
 
 	<footer>
-		<p>&copy; 2024 FutbolWear | Todos los derechos reservados</p>
+		<p>&copy; 2024 Outfitter | Todos los derechos reservados</p>
 	</footer>
 </body>
 
