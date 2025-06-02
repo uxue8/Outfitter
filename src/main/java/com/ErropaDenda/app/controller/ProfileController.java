@@ -25,7 +25,7 @@ public class ProfileController {
 
 	@Autowired
 	private ErabiltzaileaRepository erabRepo;
-	
+
 	@GetMapping("/ver")
 	public String mostrarPerfil(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -81,7 +81,6 @@ public class ProfileController {
 
 		Erabiltzailea usuarioActual = erabRepo.findByEmail(email)
 				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-
 
 		usuarioActual.getErropak().clear();
 		usuarioActual.getTelefono_zbk().clear();

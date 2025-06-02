@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Combinador de Ropa</title>
+	<style>
+		.contenedor-principal {
+			display: flex;
+		}
+
+		.selector-ropa {
+			width: 300px;
+			padding: 20px;
+			border-right: 1px solid #ccc;
+			display: none;
+			background: #f9f9f9;
+		}
+
+		.cards-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.card {
+			display: flex;
+			align-items: center;
+			border: 1px solid #ddd;
+			padding: 8px;
+			border-radius: 6px;
+			gap: 10px;
+			cursor: pointer;
+			background: white;
+			transition: 0.2s;
+		}
+
+		.card:hover {
+			background: #eef;
+		}
+
+		.cuadros-combinacion {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			padding: 20px;
+			flex-grow: 1;
+		}
+
+		.cuadro {
+			border: 2px dashed #999;
+			height: 120px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+
+		.cuadro-contenido {
+			font-size: 32px;
+			font-weight: bold;
+			line-height: 1;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+	<div class="contenedor-principal">
+		<!-- Contenedor lateral izquierdo con las cards: solo si existe prendas -->
+		<div th:if="${prendas != null}" class="selector-ropa">
+			<h3 th:text="'Prendas para: ' + ${parteSeleccionada}">Hautatu prenda</h3>
+			<div class="cards-grid">
+				<div th:each="prenda : ${prendas}" class="card">
+					<img th:src="@{'/uploads/' + ${prenda.irudiaUrl}}" th:alt="${prenda.deskribapena}" width="50" />
+					<span th:text="${prenda.deskribapena}"></span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Cuadros de selección -->
+		<div class="cuadros-combinacion">
+			<a class="cuadro" th:href="@{../outfit/prendas(parte='parteSuperior')}">
+				<div class="cuadro-contenido">+</div>
+				<span>Goiko arropa</span>
+			</a>
+			<a class="cuadro" th:href="@{produktua/outfit/prendas(parte='parteInferior')}">
+				<div class="cuadro-contenido">+</div>
+				<span>Beheko arropa</span>
+			</a>
+			<!-- Más cuadros similares -->
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
+	</footer>
+	<script>
+		let cuadroSeleccionado = null;
+
+		function mostrarRopa(parte, cuadro) {
+			cuadroSeleccionado = cuadro.querySelector(".cuadro-contenido");
+
+			const contenedor = document.getElementById("selector-ropa");
+			const lista = document.getElementById("lista-prendas");
+
+			contenedor.style.display = "block";
+			lista.innerHTML = "Kargatzen...";
+			var basePath = window.location.pathname.split("?")[0];
+
+			fetch(`${basePath}?parte=${parte}`)
+				.then(res => res.json())
+				.then(prendas => {
+					lista.innerHTML = '';
+
+					if (prendas.length === 0) {
+						lista.innerHTML = "<p>Ez da arroparik aurkitu.</p>";
+						return;
+					}
+
+					prendas.forEach(prenda => {
+						const card = document.createElement("div");
+						card.className = "card";
+						card.innerHTML = `
+		          <img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" width="50">
+		          <span>${prenda.nombre}</span>
+		        `;
+						card.onclick = () => {
+							cuadroSeleccionado.innerHTML = `<img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" height="80">`;
+						};
+						lista.appendChild(card);
+					});
+				})
+				.catch(err => {
+					lista.innerHTML = "<p>Errorea datuak kargatzerakoan.</p>";
+					console.error(err);
+				});
+
+		}
+
+		function mostrarCards() {
+			const subtipo = document.getElementById("subtipo-select").value;
+			const container = document.getElementById("cards-container");
+			container.innerHTML = '';
+
+			const prendas = ropaBD[subtipo] || [];
+
+			prendas.forEach(prenda => {
+				const card = document.createElement('div');
+				card.className = 'card';
+				card.innerHTML = `
+		               <img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" style="width:100%; border-radius: 5px;">
+		               <p>${prenda.nombre}</p>
+		           `;
+				card.onclick = () => seleccionarPrenda(prenda);
+				container.appendChild(card);
+			});
+		}
+
+		function cerrarModal() {
+			document.getElementById("modal").style.display = "none";
+		}
+
+		function seleccionarPrenda(prenda) {
+			alert("Has seleccionado: " + prenda);
+			// Aquí puedes actualizar el cuadro correspondiente con la prenda
+			cerrarModal();
+		}
+
+		// Cierra el modal si haces clic fuera del contenido
+		window.onclick = function (event) {
+			const modal = document.getElementById("modal");
+			if (event.target === modal) {
+				cerrarModal();
+			}
+		};
+	</script>
+
+</body>
+
+</html>

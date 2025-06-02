@@ -24,7 +24,6 @@ public class LoginController {
 
 	@Autowired
 	private ErabiltzaileaRepository erabRepo;
-	
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -63,7 +62,6 @@ public class LoginController {
 		erab.setRola("User");
 
 		erabRepo.save(erab);
-	
 
 		return "redirect:/home";
 	}

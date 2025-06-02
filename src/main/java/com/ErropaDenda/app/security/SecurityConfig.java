@@ -18,15 +18,16 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/saskia/ikusi", "/produktua/produktuak").hasRole("USER")
-				.requestMatchers("/erabiltzaileak/**", "/produktua/admin/**", "/saskia/admin/**", "/perfil/admin/**").hasRole("ADMIN")
-				.requestMatchers("/css/**", "/home/**", "/perfil/**", "/uploads/**").permitAll()
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/saskia/ikusi", "/produktua/produktuak")
+				.hasRole("USER")
+				.requestMatchers("/erabiltzaileak/**", "/produktua/admin/**", "/saskia/admin/**", "/perfil/admin/**")
+				.hasRole("ADMIN").requestMatchers("/css/**", "/home/**", "/perfil/**", "/uploads/**").permitAll()
 				.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/home")
-				.defaultSuccessUrl("/home/futbolWear", true)
-				.failureUrl("/home?error").permitAll())
+				.formLogin(form -> form.loginPage("/home").defaultSuccessUrl("/home/futbolWear", true)
+						.failureUrl("/home?error").permitAll())
 
-				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/home").permitAll()).userDetailsService(userDetailsService);
+				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/home").permitAll())
+				.userDetailsService(userDetailsService);
 		return http.build();
 	}
 

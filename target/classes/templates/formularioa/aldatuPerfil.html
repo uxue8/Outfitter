@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
-	
+
 	<title>Perfil del Usuario</title>
 </head>
 
@@ -27,14 +27,14 @@
 				<input type="email" id="email" name="email" th:value="${erabiltzailea.email}" required />
 			</div>
 			<div>
-			    <label for="telefonoa">Telefonoa (Beste bat jartzen bada, gehitu egingo da)</label>
-			    <input type="tel" id="telefonoa" name="telefonoa" th:value="${erabiltzailea.telefono_zbk[0]}" required />
+				<label for="telefonoa">Telefonoa (Beste bat jartzen bada, gehitu egingo da)</label>
+				<input type="tel" id="telefonoa" name="telefonoa" th:value="${erabiltzailea.telefono_zbk[0]}"
+					required />
 			</div>
-			
+
 			<div>
 				<label for="kalea">Kalea</label>
-				<input type="text" id="kalea" name="helbidea.kalea" th:value="${erabiltzailea.helbidea.kalea}"
-					 />
+				<input type="text" id="kalea" name="helbidea.kalea" th:value="${erabiltzailea.helbidea.kalea}" />
 			</div>
 			<div>
 				<label for="postaKodea">Posta kodea</label>
@@ -56,6 +56,9 @@
 			<button type="submit">Aldaketak Gorde</button>
 			<a href="/perfil/ver" class="btn btn-warning">Itzuli</a>
 		</form>
+		<footer>
+			<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
+		</footer>
 	</div>
 
 </body>
