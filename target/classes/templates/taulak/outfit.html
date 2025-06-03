@@ -9,103 +9,117 @@
 	<title>Combinador de Ropa</title>
 	<style>
 		body {
-		  font-family: 'Segoe UI', sans-serif;
-		  margin: 0;
-		  padding: 0;
-		  background-color: #f3f4f6;
-		  color: #333;
-		}
+					font-family: 'Segoe UI', sans-serif;
+					margin: 0;
+					padding: 0;
+					background-color: #f3f4f6;
+					color: #333;
+				}
 
-		h3 {
-		  margin-top: 0;
-		  font-size: 1.2rem;
-		  color: #444;
-		}
+				h3 {
+					margin-top: 0;
+					font-size: 1.2rem;
+					color: #444;
+				}
 
-		.contenedor-principal {
-		  display: flex;
-		  min-height: 90vh;
-		}
+				.contenedor-principal {
+					display: flex;
+					min-height: 90vh;
+				}
 
-		.selector-ropa {
-		  width: 320px;
-		  padding: 20px;
-		  background-color: #ffffff;
-		  border-right: 1px solid #ddd;
-		  overflow-y: auto;
-		  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-		}
+				.selector-ropa {
+					width: 320px;
+					padding: 20px;
+					background-color: #ffffff;
+					border-right: 1px solid #ddd;
+					overflow-y: auto;
+					box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+				}
 
-		.cards-grid {
-		  display: flex;
-		  flex-direction: column;
-		  gap: 12px;
-		}
+				.cards-grid {
+					display: flex;
+					flex-direction: column;
+					gap: 12px;
+				}
 
-		.card {
-		  display: flex;
-		  align-items: center;
-		  gap: 12px;
-		  padding: 10px;
-		  border: 1px solid #e2e8f0;
-		  border-radius: 8px;
-		  background-color: #ffffff;
-		  cursor: pointer;
-		  transition: background-color 0.2s, box-shadow 0.2s;
-		}
+				.card {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					padding: 10px;
+					border: 1px solid #e2e8f0;
+					border-radius: 8px;
+					background-color: #ffffff;
+					cursor: pointer;
+					transition: background-color 0.2s, box-shadow 0.2s;
+				}
 
-		.card:hover {
-		  background-color: #ebf4ff;
-		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-		}
+				.card:hover {
+					background-color: #ebf4ff;
+					box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+				}
 
-		.card img {
-		  border-radius: 5px;
-		  height: 50px;
-		  width: 50px;
-		  object-fit: cover;
-		}
+				.card img {
+					border-radius: 5px;
+					height: 50px;
+					width: 50px;
+					object-fit: cover;
+				}
 
-		.cuadros-combinacion {
-		  flex-grow: 1;
-		  padding: 30px;
-		  display: grid;
-		  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-		  gap: 24px;
-		}
+				.cuadros-combinacion {
+					flex-grow: 1;
+					padding: 30px;
+					display: flex;
+					flex-direction: column;
+					gap: 24px;
+				}
 
-		.cuadro {
-		  background-color: #fff;
-		  border: 2px dashed #94a3b8;
-		  border-radius: 12px;
-		  height: 140px;
-		  display: flex;
-		  flex-direction: column;
-		  align-items: center;
-		  justify-content: center;
-		  transition: border-color 0.2s, background-color 0.2s;
-		  cursor: pointer;
-		}
+				.cuadro {
+					background-color: #fff;
+					border: 2px dashed #94a3b8;
+					border-radius: 12px;
+					height: 140px;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					transition: border-color 0.2s, background-color 0.2s;
+					cursor: pointer;
+				}
 
-		.cuadro:hover {
-		  background-color: #f1f5f9;
-		  border-color: #3b82f6;
-		}
+				.cuadro:hover {
+					background-color: #f1f5f9;
+					border-color: #3b82f6;
+				}
 
-		.cuadro-contenido {
-		  font-size: 36px;
-		  font-weight: bold;
-		  margin-bottom: 8px;
-		  color: #3b82f6;
-		}
+				.cuadro-contenido {
+					font-size: 36px;
+					font-weight: bold;
+					margin-bottom: 8px;
+					color: #3b82f6;
+				}
 
-		footer {
-		  padding: 16px;
-		  text-align: center;
-		  background-color: #1f2937;
-		  color: #f3f4f6;
-		  font-size: 0.9rem;
-		}
+				#borrarOutfit {
+					padding: 10px 16px;
+					background-color: #ef4444;
+					color: white;
+					border: none;
+					border-radius: 8px;
+					font-weight: bold;
+					cursor: pointer;
+					transition: background-color 0.2s;
+					margin-top: 24px;
+					width: fit-content;
+					align-self: center;
+				}
+
+				footer {
+					padding: 16px;
+					text-align: center;
+					background-color: #1f2937;
+					color: #f3f4f6;
+					font-size: 0.9rem;
+				}
 
 	</style>
 </head>
@@ -137,36 +151,105 @@
 				<span>Beheko arropa</span>
 				<img id="img-parteInferior" src="" alt="Seleccionada" style="max-height: 100px; display: none;"  />
 			</a>
-			<!-- Más cuadros similares -->
+			<a class="cuadro" th:href="@{outfit(parte='calzado')}">
+				<div class="cuadro-contenido">+</div>
+				<span>Oinetakoak</span>
+				<img id="img-calzado" src="" alt="Seleccionada" style="max-height: 100px; display: none;" />
+			</a>
 		</div>
+		
+		<div style="margin-top: 30px;">
+			<h3>Osagarriak</h3>
+			<a class="cuadro" th:href="@{outfit(parte='accesorios')}" style="height: 120px;">
+				<div class="cuadro-contenido">+</div>
+				<span>Accesorios</span>
+				<img id="img-accesorios" src="" alt="Seleccionada" style="max-height: 80px; display: none;" />
+			</a>
+		</div>
+		
+		<button id="borrarOutfit">
+		  Ezabatu outfit
+		</button>
+
+		
 	</div>
 
 	<footer>
 		<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
 	</footer>
 	<script>
-	  document.addEventListener("DOMContentLoaded", function () {
-		
-	    const urlParams = new URLSearchParams(window.location.search);
-	    const parteSeleccionada = urlParams.get("parte");
+		// 1. Detectar qué parte estamos editando (ej. parteSuperior)
+		   const urlParams = new URLSearchParams(window.location.search);
+		   const parteSeleccionada = urlParams.get("parte");
 
-	    if (!parteSeleccionada) return; // si no hay parte seleccionada, no hace nada
+		   // 2. Al hacer clic en una prenda, guardar en localStorage y mostrar en el cuadro correspondiente
+		   const cards = document.querySelectorAll(".card");
+		   cards.forEach(card => {
+		     card.addEventListener("click", function () {
+		       const imgSrc = this.getAttribute("data-img");
+		       const imgTag = document.getElementById("img-" + parteSeleccionada);
 
-	    const cards = document.querySelectorAll(".card");
-	    cards.forEach(card => {
-	      card.addEventListener("click", function () {
-			
-			debugger;
-	        const imgSrc = this.getAttribute("data-img");
-	        const imgTag = document.getElementById("img-" + parteSeleccionada);
+		       if (imgTag) {
+		         imgTag.src = imgSrc;
+		         imgTag.style.display = "block";
+				 
+				 // Ocultar el span y el cuadro-contenido
+				  const parent = imgTag.closest(".cuadro");
+				  if (parent) {
+				    const span = parent.querySelector("span");
+				    const plus = parent.querySelector(".cuadro-contenido");
+				    if (span) span.style.display = "none";
+				    if (plus) plus.style.display = "none";
+				 }
+		         // Guardamos en localStorage
+		         localStorage.setItem("img-" + parteSeleccionada, imgSrc);
+		       }
+		     });
+		   });
 
-	        if (imgTag) {
-	          imgTag.src = imgSrc;
-	          imgTag.style.display = "block";
-	        }
-	      });
-	    });
-	  });
+		   // 3. Al cargar la página, restaurar imágenes guardadas
+		   const partes = ["parteSuperior", "parteInferior", "calzado", "accesorios"]; // Añade más si tienes
+		   partes.forEach(parte => {
+		     const imgSrc = localStorage.getItem("img-" + parte);
+		     const imgTag = document.getElementById("img-" + parte);
+		     if (imgTag && imgSrc) {
+		       imgTag.src = imgSrc;
+		       imgTag.style.display = "block";
+			   
+			   const parent = imgTag.closest(".cuadro");
+			    if (parent) {
+			      const span = parent.querySelector("span");
+			      const plus = parent.querySelector(".cuadro-contenido");
+			      if (span) span.style.display = "none";
+			      if (plus) plus.style.display = "none";
+			    }
+		     }
+		   });
+		  
+		   document.getElementById("borrarOutfit").addEventListener("click", function () {
+		     partes.forEach(parte => {
+		       localStorage.removeItem("img-" + parte);
+		       const imgTag = document.getElementById("img-" + parte);
+		       if (imgTag) {
+				   imgTag.src = "";
+				   imgTag.style.display = "none";
+
+				   const parent = imgTag.closest(".cuadro");
+				   if (parent) {
+				     const span = parent.querySelector("span");
+				     const plus = parent.querySelector(".cuadro-contenido");
+				     if (span) span.style.display = "block";
+				     if (plus) plus.style.display = "block";
+				   }
+		       }
+		     });
+
+		     // Redirigir a la misma página sin parámetros
+		     const baseUrl = window.location.origin + window.location.pathname;
+		     window.location.href = baseUrl;
+		   });
+
+		 
 	</script>
 
 

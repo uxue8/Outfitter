@@ -188,6 +188,25 @@ public class ProduktuaController {
 		}
 		return "taulak/produktuaTaula";
 	}
+	
+	
+	@GetMapping("/ezabatu/{id}") 
+	public String eliminarProducto(@PathVariable Long id,  Model model) { 
+		 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+
+		Erabiltzailea erabiltzailea = erabRepository.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+		model.addAttribute("erabiltzailea", erabiltzailea);
+
+		String rol = auth.getAuthorities().stream().map(authority -> authority.getAuthority()).findFirst().orElse(null);
+		model.addAttribute("rola", rol);
+		
+		Optional<Erropa> produktoa =prodRepo.findById(id);
+		   prodRepo.delete(produktoa.get());
+		   return "redirect:/produktua/produktuak";
+	   }
 
 	@GetMapping("/sortu/outfit")
 	public String sortuOutfita(@RequestParam(value = "parte", required = false) String parte,Model model) {
@@ -247,7 +266,7 @@ public class ProduktuaController {
 
 	private static final Map<String, String> categoriaGeneralPorTipo = Map.of("camiseta", "parteSuperior", "sudadera",
 			"parteSuperior", "chaqueta", "parteSuperior", "pantalon", "parteInferior", "falda", "parteInferior",
-			"zapatillas", "calzado", "botas", "calzado", "gafas", "accesorio", "reloj", "accesorio"
+			"zapatillas", "calzado", "camisa", "parteSuperior", "bolso", "accesorio", "gorra", "accesorio"
 	// y así sucesivamente
 	);
 
