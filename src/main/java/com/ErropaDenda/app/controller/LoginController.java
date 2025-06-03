@@ -33,7 +33,7 @@ public class LoginController {
 		return "logeatu/logina";
 	}
 
-	@GetMapping("/futbolWear")
+	@GetMapping("/outfitter")
 	public String index(Model model) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String rol = userDetails.getAuthorities().stream().findFirst().map(auth -> auth.getAuthority()).orElse(null);

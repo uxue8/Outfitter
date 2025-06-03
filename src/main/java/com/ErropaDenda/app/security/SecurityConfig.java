@@ -23,7 +23,7 @@ public class SecurityConfig {
 				.requestMatchers("/erabiltzaileak/**", "/produktua/admin/**", "/saskia/admin/**", "/perfil/admin/**")
 				.hasRole("ADMIN").requestMatchers("/css/**", "/home/**", "/perfil/**", "/uploads/**").permitAll()
 				.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/home").defaultSuccessUrl("/home/futbolWear", true)
+				.formLogin(form -> form.loginPage("/home").defaultSuccessUrl("/home/outfitter", true)
 						.failureUrl("/home?error").permitAll())
 
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/home").permitAll())
