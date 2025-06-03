@@ -37,7 +37,6 @@
 						th:text="|${usuario.helbidea.kalea}, ${usuario.helbidea.hiria}, ${usuario.helbidea.postaKodea}, ${usuario.helbidea.herrialdea}|">
 					</td>
 					<td>
-						<a th:href="@{/saskia/admin/ikusi/{email}(email=${usuario.email})}">Ikusi saskia</a>
 						<a th:href="@{/perfil/admin/ezabatu/{id}(id=${usuario.id})}"
 							onclick="return confirm('Erabiltzailearen kontua eta datuak ezabatuko dira.');">Ezabatu
 							erabiltzailea</a>
@@ -52,9 +51,6 @@
 		<p class="saskia-text">Ez dago erabiltzailerik erregistratuta.</p>
 	</div>
 
-	<footer>
-		<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
-	</footer>
 </body>
 
 </html>

@@ -165,7 +165,7 @@ public class ProduktuaController {
 
 	private static final Map<String, String> categoriaGeneralPorTipo = Map.of("camiseta", "parteSuperior", "sudadera",
 			"parteSuperior", "chaqueta", "parteSuperior", "pantalon", "parteInferior", "falda", "parteInferior",
-			"zapatilla", "calzado", "camisa", "parteSuperior", "bolso", "accesorio", "gorra", "accesorio"
+			"zapatilla", "calzado", "camisa", "parteSuperior", "bolso", "accesorios", "gorra", "accesorios"
 	
 	);
 

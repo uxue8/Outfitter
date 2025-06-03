@@ -8,26 +8,34 @@
 
 .container {
 	max-width: 800px;
-	margin: 50px auto;
+	margin: 150px auto;
 	padding: 20px;
 }
 
 .card {
-	background-color: #fff;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	padding: 20px;
+	background-color: #064743;
+	box-shadow: 0 14px 18px rgba(0, 0, 0, 0.5);	
 }
 
 .card-header {
-	background-color: #218682;
+	background-color: #BBCBCB;
 	color: white;
 	text-align: center;
 	padding: 15px;
-	border-radius: 8px 8px 0 0;
+}
+
+.card-header h3{
+	font-size: 30px;
+}
+
+.text-center{
+	´width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 
 .btn {
+	width: 50%;
 	background-color: #454E9E;
 	color: white;
 	padding: 10px 20px;
@@ -41,6 +49,7 @@
 }
 
 .btn:nth-child(2) {
+	width: 50%;
 	background-color: #D00000;
 	color: white;
 	padding: 10px 20px;
@@ -54,17 +63,19 @@
 }
 
 .btn:hover {
-	background-color: #454E9E;
+	background-color: #4AC3C5;
 }
 
 .btn:nth-child(2):hover {
-	background-color: #D00000;
+	background-color: #9a0000;
 }
 
 .mb-3 {
 	display: flex;
-	margin-bottom: 20px;
-
+	align-items: center;
+	gap: 24px;
+	margin: 20px;
+	color: white;
 }
 
 label {

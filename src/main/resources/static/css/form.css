@@ -36,10 +36,11 @@ h2 {
 	width: 100%;
 	padding: 10px;
 	border: 1px solid #218682;
-	background-color: #218682;
+	background-color: #064743;
 	border-radius: 4px;
 	box-sizing: border-box;
 	margin-bottom: 15px;
+	color: white;
 }
 
 .form-container button[type="submit"] {
@@ -59,8 +60,7 @@ h2 {
 
 /* Estilo para select dentro del formulario (categorías) */
 .form-container select {
-	background-color: #fff;
-	border: 1px solid #ccc;
+	background-color: #064743;
 	padding: 10px;
 	border-radius: 4px;
 }

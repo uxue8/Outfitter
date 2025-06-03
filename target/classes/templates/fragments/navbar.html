@@ -15,7 +15,7 @@
 				<li><a href="/perfil/ver">Perfila</a></li>
 				<li><a href="/erabiltzaileak/ikusi" th:if="${rola == 'ROLE_ADMIN'}">Erabiltzaileak ikusi</a></li>
 				<li><a href="/produktua/produktuak" th:if="${rola == 'ROLE_USER'}"> Nire armairua</a></li>
-				<li><a href="/produktua/sortu/outfit" th:if="${rola == 'ROLE_USER'}"> Sortu Outfit-a</a></li>
+				<li><a href="/produktua/sortu/outfit" th:if="${rola == 'ROLE_USER'}"> Kombinazioa egin</a></li>
 				<li>
 					<a href="#" onclick="document.getElementById('logout-form').submit();">Saioa itxi</a>
 					<form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>

@@ -5,12 +5,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    padding: 20px;
-	margin-left: 270px;
+    padding: 50px;
+	margin-left: 350px;
 	  
 }
 
-/* Estilo de cada card */
 .card {
     background-color: #BBCBCB;
     border-radius: 8px;
@@ -20,10 +19,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-/* Hover effect */
-.card:hover {
-    transform: scale(1.05);
-}
 
 /* Imagen de la card */
 .card-image {
@@ -34,6 +29,7 @@
 
 /* Cuerpo de la card */
 .card-body {
+	background-color: #0B7A75;
     padding: 15px;
     text-align: center;
 }
@@ -75,9 +71,8 @@
     margin-bottom: 15px;
 }
 
-/* Acciones en la card (editar, eliminar, etc.) */
 .card-actions a {
-    background-color: #454E9E;
+    background-color: #D00000;
     color: #fff;
     padding: 10px 15px;
     text-decoration: none;
@@ -87,7 +82,7 @@
 }
 
 .card-actions a:hover {
-    background-color: #0056b3;
+    background-color: #9a0000;
 }
 
 /* Estilo para el mensaje cuando no hay productos */

@@ -1,18 +1,15 @@
 /* Contenedor de filtros que ocupa toda la izquierda */
 .filters-container {
-	width: 250px;
-	height: calc(100vh - 80px); /* Ajusta al tamaño de pantalla menos el navbar */
-	margin-top: 80px; /* Altura de tu navbar (ajusta si tu navbar mide más o menos) */
+	width: 300px;
+	height: 100vh;
+	margin-top: 98px; 
 	padding: 20px;
-	background-color: rgba(33, 134, 130, 0.8); /* Fondo blanco con transparencia */
-	border-right: 2px solid #454E9E;
-	border-radius: 0 10px 10px 0;
-	box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);
+	background-color: #064743; 
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 1000;
-	overflow-y: auto; /* Para que puedas hacer scroll dentro si hay muchos filtros */
+	overflow-y: auto; 
 }
 
 /* Espaciado en la página principal para no tapar el contenido */
@@ -53,7 +50,7 @@ select {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #BBCBCB;
   margin-bottom: 15px;
   box-sizing: border-box;
 }
@@ -89,7 +86,6 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-/* Estilo del valor de precio */
 #precioValue {
   font-weight: bold;
   color: #191716;
@@ -101,7 +97,6 @@ input[type="range"]::-moz-range-thumb {
 .filter-button {
   width: 100%;
   padding: 12px;
-  background-color: #454E9E;
   color: #fff;
   font-size: 1.2rem;
   border: none;
@@ -111,14 +106,24 @@ input[type="range"]::-moz-range-thumb {
   transition: background-color 0.3s ease;
   margin-top: 20px;
 }
+.boton1{
 
-.filter-button:hover {
-  background-color: #0056b3;
+	background-color: #454E9E;
 }
 
-.filter-button:active {
-  background-color: #454E9E;
+.boton2{
+	background-color: #D00000;
 }
+
+.boton1:hover{
+
+	background-color: #4AC3C5;
+}
+
+.boton2:hover{
+	background-color: #9a0000;
+}
+
 
 /* Filtros de categorías, colores, etc. */
 .filter-category, .filter-size {

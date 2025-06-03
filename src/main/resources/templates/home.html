@@ -15,11 +15,6 @@
 	<!-- Navbar con fragmento reutilizable -->
 	<div th:replace="~{/fragments/navbar.html :: navbar}"></div>
 
-	<header class="store-header" th:if="${rola == 'ROLE_USER'}">
-		<h1>Outfitter</h1>
-		<p class="slogan">Egunero berritu, Outfitter-rekin.</p>
-		<a href="/produktua/produktuak" class="cta-button" th:if="${rola == 'ROLE_USER'}"> Nire armairua</a>
-	</header>
 
 	<header class="store-header" th:if="${rola == 'ROLE_ADMIN'}">
 		<h1 th:text="'Kaixo ' + ${admin}"></h1>

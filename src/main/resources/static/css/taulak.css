@@ -13,10 +13,11 @@ h1 {
 }
 
 table {
+	margin-top: 100px;
 	width: 100%;
 	border-collapse: collapse;
-	margin-top: 20px;
 }
+
 
 th,
 td {
@@ -45,13 +46,14 @@ table a,
 	text-align: center;
 	padding: 10px 20px;
 	color: #fff;
-	background-color: #454E9E;
+	background-color: #D00000;
 	text-decoration: none;
 	border-radius: 5px;
 }
 
 .botoia{
-	margin-left: 300px;
+	margin-left: 400px;
+	margin-bottom: 30px;
 }
 
 table a:nth-child(2) {
@@ -71,7 +73,7 @@ table a:nth-child(2):hover {
 
 table a:hover,
 .botoia:hover {
-	  background-color: #0056b3;
+	  background-color: #9a0000;
 }
 
 table img {

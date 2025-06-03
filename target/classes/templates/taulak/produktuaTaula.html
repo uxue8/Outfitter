@@ -24,7 +24,7 @@
 	<div th:if="${rola != 'ROLE_ADMIN'}" class="cards-container">
 		<!-- Panel de filtros visible solo para los usuarios -->
 		<div class="filters-container" th:if="${rola == 'ROLE_USER'}">
-			<h3>Filtros</h3>
+			<h3>FILTROAK</h3>
 			<div class="filter-section">
 				<h4>Mota</h4>
 				<select name="tipo" id="tipo">
@@ -41,9 +41,9 @@
 					<option value="gorra">Txapelak</option>
 				</select>
 			</div>
-			<button class="filter-button" onclick="applyFilters()">Filtroak aplikatu</button>
+			<button class="filter-button boton1" onclick="applyFilters()">Filtroak aplikatu</button>
 			<br>
-			<button class="filter-button" onclick="borrarFiltros()">Filtroak ezabatu</button>
+			<button class="filter-button boton2" onclick="borrarFiltros()">Filtroak ezabatu</button>
 		</div>
 
 		<div th:each="produktua : ${produktuak}" th:if="${produktuak != null}" class="card">
@@ -66,9 +66,6 @@
 	<!-- Botón para agregar producto, visible solo para administradores -->
 	<a class="botoia" th:href="@{/produktua/gehitu}" th:if="${rola == 'ROLE_USER'}">Erropa gehitu</a>
 
-	<footer>
-		<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
-	</footer>
 </body>
 
 
