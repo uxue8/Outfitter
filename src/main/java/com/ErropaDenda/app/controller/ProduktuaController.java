@@ -190,7 +190,7 @@ public class ProduktuaController {
 	}
 
 	@GetMapping("/sortu/outfit")
-	public String sortuOutfita(Model model) {
+	public String sortuOutfita(@RequestParam(value = "parte", required = false) String parte,Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String email = auth.getName();
 
@@ -200,21 +200,9 @@ public class ProduktuaController {
 
 		String rol = auth.getAuthorities().stream().map(authority -> authority.getAuthority()).findFirst().orElse(null);
 		model.addAttribute("rola", rol);
-		return "taulak/outfit";
-	}
-
-	@GetMapping("/outfit/prendas")
-	public String mostrarOutfit(@RequestParam(required = false) String parte, Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String email = auth.getName();
-
-		Erabiltzailea erabiltzailea = erabRepository.findByEmail(email)
-				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-		model.addAttribute("erabiltzailea", erabiltzailea);
-
-		String rol = auth.getAuthorities().stream().map(authority -> authority.getAuthority()).findFirst().orElse(null);
-		model.addAttribute("rola", rol);
-
+		
+		
+		
 		if (parte != null) {
 			List<String> tiposDeParte = categoriaGeneralPorTipo.entrySet().stream()
 					.filter(entry -> entry.getValue().equals(parte)).map(Map.Entry::getKey)
@@ -228,6 +216,7 @@ public class ProduktuaController {
 		return "taulak/outfit";
 	}
 
+	
 	/*
 	 * @GetMapping("/produktuak/erosi/{id}") public String
 	 * produktuaErosiUser(@PathVariable Long id, Model model) { Authentication auth
@@ -257,7 +246,7 @@ public class ProduktuaController {
 	 */
 
 	private static final Map<String, String> categoriaGeneralPorTipo = Map.of("camiseta", "parteSuperior", "sudadera",
-			"parteSuperior", "chaqueta", "parteSuperior", "pantalones", "parteInferior", "falda", "parteInferior",
+			"parteSuperior", "chaqueta", "parteSuperior", "pantalon", "parteInferior", "falda", "parteInferior",
 			"zapatillas", "calzado", "botas", "calzado", "gafas", "accesorio", "reloj", "accesorio"
 	// y así sucesivamente
 	);

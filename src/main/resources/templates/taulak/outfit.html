@@ -8,63 +8,105 @@
 	<meta charset="UTF-8">
 	<title>Combinador de Ropa</title>
 	<style>
+		body {
+		  font-family: 'Segoe UI', sans-serif;
+		  margin: 0;
+		  padding: 0;
+		  background-color: #f3f4f6;
+		  color: #333;
+		}
+
+		h3 {
+		  margin-top: 0;
+		  font-size: 1.2rem;
+		  color: #444;
+		}
+
 		.contenedor-principal {
-			display: flex;
+		  display: flex;
+		  min-height: 90vh;
 		}
 
 		.selector-ropa {
-			width: 300px;
-			padding: 20px;
-			border-right: 1px solid #ccc;
-			display: none;
-			background: #f9f9f9;
+		  width: 320px;
+		  padding: 20px;
+		  background-color: #ffffff;
+		  border-right: 1px solid #ddd;
+		  overflow-y: auto;
+		  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
 		}
 
 		.cards-grid {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
+		  display: flex;
+		  flex-direction: column;
+		  gap: 12px;
 		}
 
 		.card {
-			display: flex;
-			align-items: center;
-			border: 1px solid #ddd;
-			padding: 8px;
-			border-radius: 6px;
-			gap: 10px;
-			cursor: pointer;
-			background: white;
-			transition: 0.2s;
+		  display: flex;
+		  align-items: center;
+		  gap: 12px;
+		  padding: 10px;
+		  border: 1px solid #e2e8f0;
+		  border-radius: 8px;
+		  background-color: #ffffff;
+		  cursor: pointer;
+		  transition: background-color 0.2s, box-shadow 0.2s;
 		}
 
 		.card:hover {
-			background: #eef;
+		  background-color: #ebf4ff;
+		  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+		}
+
+		.card img {
+		  border-radius: 5px;
+		  height: 50px;
+		  width: 50px;
+		  object-fit: cover;
 		}
 
 		.cuadros-combinacion {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-			padding: 20px;
-			flex-grow: 1;
+		  flex-grow: 1;
+		  padding: 30px;
+		  display: grid;
+		  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		  gap: 24px;
 		}
 
 		.cuadro {
-			border: 2px dashed #999;
-			height: 120px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
+		  background-color: #fff;
+		  border: 2px dashed #94a3b8;
+		  border-radius: 12px;
+		  height: 140px;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		  transition: border-color 0.2s, background-color 0.2s;
+		  cursor: pointer;
+		}
+
+		.cuadro:hover {
+		  background-color: #f1f5f9;
+		  border-color: #3b82f6;
 		}
 
 		.cuadro-contenido {
-			font-size: 32px;
-			font-weight: bold;
-			line-height: 1;
+		  font-size: 36px;
+		  font-weight: bold;
+		  margin-bottom: 8px;
+		  color: #3b82f6;
 		}
+
+		footer {
+		  padding: 16px;
+		  text-align: center;
+		  background-color: #1f2937;
+		  color: #f3f4f6;
+		  font-size: 0.9rem;
+		}
+
 	</style>
 </head>
 
@@ -76,7 +118,7 @@
 		<div th:if="${prendas != null}" class="selector-ropa">
 			<h3 th:text="'Prendas para: ' + ${parteSeleccionada}">Hautatu prenda</h3>
 			<div class="cards-grid">
-				<div th:each="prenda : ${prendas}" class="card">
+				<div th:each="prenda : ${prendas}" class="card" th:attr="data-img='/uploads/' + ${prenda.irudiaUrl}, data-text=${prenda.deskribapena}">
 					<img th:src="@{'/uploads/' + ${prenda.irudiaUrl}}" th:alt="${prenda.deskribapena}" width="50" />
 					<span th:text="${prenda.deskribapena}"></span>
 				</div>
@@ -85,13 +127,15 @@
 
 		<!-- Cuadros de selección -->
 		<div class="cuadros-combinacion">
-			<a class="cuadro" th:href="@{../outfit/prendas(parte='parteSuperior')}">
+			<a class="cuadro" th:href="@{outfit(parte='parteSuperior')}">
 				<div class="cuadro-contenido">+</div>
 				<span>Goiko arropa</span>
+				<img id="img-parteSuperior" src="" alt="Seleccionada" style="max-height: 100px; display: none;"  />
 			</a>
-			<a class="cuadro" th:href="@{produktua/outfit/prendas(parte='parteInferior')}">
+			<a class="cuadro" th:href="@{outfit(parte='parteInferior')}">
 				<div class="cuadro-contenido">+</div>
 				<span>Beheko arropa</span>
+				<img id="img-parteInferior" src="" alt="Seleccionada" style="max-height: 100px; display: none;"  />
 			</a>
 			<!-- Más cuadros similares -->
 		</div>
@@ -101,85 +145,31 @@
 		<p>&copy; 2025 Outfitter | Todos los derechos reservados</p>
 	</footer>
 	<script>
-		let cuadroSeleccionado = null;
+	  document.addEventListener("DOMContentLoaded", function () {
+		
+	    const urlParams = new URLSearchParams(window.location.search);
+	    const parteSeleccionada = urlParams.get("parte");
 
-		function mostrarRopa(parte, cuadro) {
-			cuadroSeleccionado = cuadro.querySelector(".cuadro-contenido");
+	    if (!parteSeleccionada) return; // si no hay parte seleccionada, no hace nada
 
-			const contenedor = document.getElementById("selector-ropa");
-			const lista = document.getElementById("lista-prendas");
+	    const cards = document.querySelectorAll(".card");
+	    cards.forEach(card => {
+	      card.addEventListener("click", function () {
+			
+			debugger;
+	        const imgSrc = this.getAttribute("data-img");
+	        const imgTag = document.getElementById("img-" + parteSeleccionada);
 
-			contenedor.style.display = "block";
-			lista.innerHTML = "Kargatzen...";
-			var basePath = window.location.pathname.split("?")[0];
-
-			fetch(`${basePath}?parte=${parte}`)
-				.then(res => res.json())
-				.then(prendas => {
-					lista.innerHTML = '';
-
-					if (prendas.length === 0) {
-						lista.innerHTML = "<p>Ez da arroparik aurkitu.</p>";
-						return;
-					}
-
-					prendas.forEach(prenda => {
-						const card = document.createElement("div");
-						card.className = "card";
-						card.innerHTML = `
-		          <img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" width="50">
-		          <span>${prenda.nombre}</span>
-		        `;
-						card.onclick = () => {
-							cuadroSeleccionado.innerHTML = `<img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" height="80">`;
-						};
-						lista.appendChild(card);
-					});
-				})
-				.catch(err => {
-					lista.innerHTML = "<p>Errorea datuak kargatzerakoan.</p>";
-					console.error(err);
-				});
-
-		}
-
-		function mostrarCards() {
-			const subtipo = document.getElementById("subtipo-select").value;
-			const container = document.getElementById("cards-container");
-			container.innerHTML = '';
-
-			const prendas = ropaBD[subtipo] || [];
-
-			prendas.forEach(prenda => {
-				const card = document.createElement('div');
-				card.className = 'card';
-				card.innerHTML = `
-		               <img src="/imagenes/${prenda.imagen}" alt="${prenda.nombre}" style="width:100%; border-radius: 5px;">
-		               <p>${prenda.nombre}</p>
-		           `;
-				card.onclick = () => seleccionarPrenda(prenda);
-				container.appendChild(card);
-			});
-		}
-
-		function cerrarModal() {
-			document.getElementById("modal").style.display = "none";
-		}
-
-		function seleccionarPrenda(prenda) {
-			alert("Has seleccionado: " + prenda);
-			// Aquí puedes actualizar el cuadro correspondiente con la prenda
-			cerrarModal();
-		}
-
-		// Cierra el modal si haces clic fuera del contenido
-		window.onclick = function (event) {
-			const modal = document.getElementById("modal");
-			if (event.target === modal) {
-				cerrarModal();
-			}
-		};
+	        if (imgTag) {
+	          imgTag.src = imgSrc;
+	          imgTag.style.display = "block";
+	        }
+	      });
+	    });
+	  });
 	</script>
+
+
 
 </body>
 
