@@ -13,16 +13,19 @@
 	<div class="form-container">
 		<form th:action="@{/produktua/erropa/gehitu}" th:object="${produktua}" method="post"
 			enctype="multipart/form-data">
-			<label for="tipo">Tipo:</label>
+			<label for="tipo">Mota:</label>
 			<select name="tipo" id="tipo" th:field="*{tipo}">
-				<option value="">Selecciona un tipo</option>
-				<option value="pantalon">Pantalon</option>
-				<option value="camiseta">Camiseta</option>
-				<option value="camisa">Camisa</option>
-				<option value="sudadera">Sudadera</option>
-				<option value="abrigo">Abrigo</option>
-				<option value="chaqueta">Chaqueta</option>
-				<option value="zapatilla">Zapatillas</option>
+				                    <option value="">Aukeratu mota bat</option>
+									<option value="pantalon">Prakak</option>
+									<option value="falda">Gonak</option>
+									<option value="camiseta">Kamisetak</option>
+									<option value="camisa">Alkandorak</option>
+									<option value="sudadera">Jertseak</option>
+									<option value="abrigo">Berokiak</option>
+									<option value="chaqueta">Jaketak</option>
+									<option value="zapatilla">Zapatilak</option>
+									<option value="bolso">Poltsak</option>
+									<option value="gorra">Txapelak</option>
 			</select>
 			<br><br>
 
