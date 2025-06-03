@@ -74,7 +74,7 @@ public class ProduktuaController {
 				return "redirect:/produktua/produktuak";
 			}else {
 				
-				//model.addAttribute("error", producto.getTipo());
+				model.addAttribute("error", "Ez duzu argazkirik gehitu");
 				return "formularioa/produktuaForm.html";
 			}
 			
