@@ -60,7 +60,7 @@ public class ProduktuaController {
 	@PostMapping("erropa/gehitu")
 	public String produktuaGehitu(@ModelAttribute("produktua") Erropa producto,
 			@RequestParam("file") MultipartFile irudia, Model model) {
-		boolean produktuaExistitzenDa = false;
+		
 		try {
 
 			if (!irudia.isEmpty()) {
@@ -70,22 +70,15 @@ public class ProduktuaController {
 				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + irudia.getOriginalFilename());
 				Files.write(rutaCompleta, bytesImg);
 				producto.setIrudiaUrl(irudia.getOriginalFilename());
-			}
-			List<Erropa> produktuLista = prodRepo.findAll();
-			for (Erropa produktua : produktuLista) {
-				if (produktua.getTipo().equals(producto.getTipo())) {
-					model.addAttribute("error", producto.getTipo());
-					produktuaExistitzenDa = true;
-				}
-			}
-
-			if (!produktuaExistitzenDa) {
 				prodRepo.save(producto);
 				return "redirect:/produktua/produktuak";
-			} else {
+			}else {
+				
+				//model.addAttribute("error", producto.getTipo());
 				return "formularioa/produktuaForm.html";
 			}
-
+			
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();
